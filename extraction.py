@@ -1,5 +1,6 @@
 import argparse
 import json
+import logging
 import re
 import sys
 from pathlib import Path
@@ -93,6 +94,8 @@ def parse_arguments() -> argparse.Namespace:
 
 def main() -> int:
     """Run the SQL information extraction application."""
+    logger = logging.getLogger("sql_information_extraction")
+
     try:
         config = load_config()
         logger = setup_logging(config["logging"])
@@ -137,22 +140,27 @@ def main() -> int:
         return 0
 
     except FileNotFoundError as error:
+        logger.exception("File not found: %s", error)
         print(f"Error: {error}", file=sys.stderr)
         return 1
 
     except (ValueError, KeyError) as error:
+        logger.exception("Configuration error: %s", error)
         print(f"Configuration error: {error}", file=sys.stderr)
         return 1
 
     except UnicodeDecodeError as error:
+        logger.exception("Encoding error: %s", error)
         print(f"Encoding error: {error}", file=sys.stderr)
         return 1
 
     except OSError as error:
+        logger.exception("File operation error: %s", error)
         print(f"File operation error: {error}", file=sys.stderr)
         return 1
 
     except Exception:
+        logger.exception("An unexpected error occurred.")
         print(
             "An unexpected error occurred. Check the application logs.",
             file=sys.stderr
