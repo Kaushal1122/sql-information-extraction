@@ -67,9 +67,9 @@ def test_extract_procedures():
     result = extract_procedures(sql_content)
 
     assert len(result) == 2
-    assert result[0]["procedure_name"] == "GetCustomerOrders"
+    assert result[0]["name"] == "GetCustomerOrders"
     assert len(result[0]["parameters"]) == 2
-    assert result[1]["procedure_name"] == "UpdateProductStock"
+    assert result[1]["name"] == "UpdateProductStock"
     assert result[1]["parameters"][1]["direction"] == "OUT"
 
 
@@ -85,7 +85,7 @@ def test_extract_procedures_with_no_parameters():
 
     assert result == [
         {
-            "procedure_name": "GetAllCustomers",
+            "name": "GetAllCustomers",
             "parameters": []
         }
     ]
@@ -123,7 +123,7 @@ def test_write_json_file(tmp_path):
     data = {
         "procedures": [
             {
-                "procedure_name": "TestProcedure",
+                "name": "TestProcedure",
                 "parameters": [
                     {
                         "direction": "IN",
@@ -192,7 +192,7 @@ def test_main_success(tmp_path, monkeypatch):
 
     assert result == 0
     assert output_file.is_file()
-    assert output_data["procedures"][0]["procedure_name"] == (
+    assert output_data["procedures"][0]["name"] == (
         "TestProcedure"
     )
 
