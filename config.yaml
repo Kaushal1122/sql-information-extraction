@@ -1,0 +1,9 @@
+application:
+  input_encoding: "utf-8"
+  output_encoding: "utf-8"
+  output_indent: 4
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "extraction.log"
