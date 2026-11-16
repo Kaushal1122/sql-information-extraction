@@ -1,7 +1,7 @@
 {
     "procedures": [
         {
-            "procedure_name": "GetCustomerOrders",
+            "name": "GetCustomerOrders",
             "parameters": [
                 {
                     "direction": "IN",
@@ -21,7 +21,7 @@
             ]
         },
         {
-            "procedure_name": "UpdateProductStock",
+            "name": "UpdateProductStock",
             "parameters": [
                 {
                     "direction": "IN",
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "procedure_name": "AddNewEmployee",
+            "name": "AddNewEmployee",
             "parameters": [
                 {
                     "direction": "IN",

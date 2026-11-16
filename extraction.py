@@ -58,7 +58,7 @@ def extract_procedures(sql_content: str) -> list[dict]:
         parameter_text = match.group(2)
 
         procedures.append({
-            "procedure_name": procedure_name,
+            "name": procedure_name,
             "parameters": extract_parameters(parameter_text)
         })
 
